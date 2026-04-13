@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/css/styled.css" />
+    <link rel="stylesheet" href="assets/css/quiz.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body style="background-color: #f6f6f6">
+    <header>
+      <nav
+        class="w-full text-white overflow-hidden"
+        style="background-color: #2a2a2a"
+      >
+        <div class="relative w-full">
+          <div
+            class="mx-auto flex max-w-9xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8 text-white"
+          >
+            <div class="inline-flex items-center space-x-2 text-white">
+              <span>
+                <img src="/assets/image/logo2.png" style="width: 50px" />
+              </span>
+              <span class="font-bold"></span>
+            </div>
+            <div class="hidden lg:block">
+              <ul class="inline-flex space-x-12 gap-x-10">
+                <li>
+                  <a
+                    href="index.html"
+                    class="text-sm font-semibold text-800 hover:text-gray-400"
+                  >
+                    <i class="fa-solid fa-house"></i>
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-sm font-semibold text-800 hover:text-gray-400"
+                  >
+                    <i class="fa-solid fa-circle-question"></i>
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-sm font-semibold text-800 hover:text-gray-400"
+                  >
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    Study material
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-sm font-semibold text-800 hover:text-gray-400"
+                  >
+                    <i class="fa-solid fa-book-bookmark"></i>
+                    Dashboard
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="hidden lg:block">
+              <div class="isolate flex flex-col text-center -space-x-2">
+                <img
+                  class="relative z-0 inline-block h-8 w-8 rounded-full ring-2 ring-white"
+                  src="https://nextjs.org/_next/image?url=https%3A%2F%2Fwww.datocms-assets.com%2F35255%2F1665059775-delba.jpg&amp;w=640&amp;q=75"
+                  alt="Delba"
+                />
+                <span>Yash</span>
+              </div>
+            </div>
+            <div class="lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="h-6 w-6 cursor-pointer"
+              >
+                <line x1="4" y1="12" x2="20" y2="12"></line>
+                <line x1="4" y1="6" x2="20" y2="6"></line>
+                <line x1="4" y1="18" x2="20" y2="18"></line>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="section flex justify-between">
+      <div class="left w-1/4 flex flex-col">
+        <div
+          class="flex flex-col bg-white mt-5 ml-5 py-10 px-5 rounded-xl gap-7 justify-center items-center h-xl shadow-2xl"
+        >
+          <h1 class="text-3xl font-bold">President of India</h1>
+          <div class="chap flex flex-col gap-3">
+            <div class="name flex gap-4 text-center justify-center items-center"> 
+            <i id="prev" class="ctrl fa-solid fa-chevron-left transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover: duration-300 ..."></i>
+            <h3 class="ctrl text-xl font-sm">Lesson 3: Power of President</h3>
+            <i id="next" class="fa-solid fa-chevron-right transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover: duration-300 ..."></i>
+              <hr />
+            </div>
+            <div class="learn flex flex-col gap-3" id="course">
+              <p id="element1" class="video-heading rounded-xl px-5 py-4">
+                Powers of President
+              </p>
+              <p id="element" class="rounded-xl px-5 py-4">
+                Role and Powers of President
+              </p>
+              <p id="element" class="rounded-xl px-5 py-4">
+                Election of the President of India
+              </p>
+              <p id="quiz-btn" class="rounded-xl px-5 py-4">Quiz 1</p>
+              <p
+                id="element"
+                class="cross rounded-xl px-5 py-4"
+                onclick="redirectToPage('Crossword.html')"
+              >
+              Crossword
+              </p>
+              <p
+                id="element"
+                class="rounded-xl px-5 py-4"
+                onclick="redirectToPage('quest.html')"
+              >
+              Constitutional Quest
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="right max-h-screen w-3/4 flex mt-8 items-center flex-col gap-2"
+      >
+        <h1 class="text-3xl font-semibold">
+          <span class="text-blue-500">TOPIC</span>:Election of the president of
+          India
+        </h1>
+        <p>
+          In this section we will see how Indian president is elected, who
+          nominates him and much more.
+        </p>
+        <div
+          class="material flex w-11/12 h-min-4/5 h-5/6 bg-white rounded-xl justify-center shadow-2xl"
+        >
+          <div class="read w-3/5 p-7 py-4 overflow-auto" id="content">
+            <!-- <h4 class="text-center text-xl font-medium">Election of president in India</h4> -->
+            <!-- <div class="main mt-5 " >
+                <h5 class="font-medium">Electoral Collage</h5>
+                <li>The President is elected by an Electoral College comprising:</li>
+                <li>Elected members of both Houses of Parliament.</li>
+                <li>Elected members of the Legislative Assemblies of States and Union Territories.</li>
+              </div> -->
+
+            <!-- <div class="main mt-5 ">
+                <h5 class="font-medium">Electoral Collage</h5>
+                <li>The President is elected by an Electoral College comprising:</li>
+                <li>Elected members of both Houses of Parliament.</li>
+                <li>Elected members of the Legislative Assemblies of States and Union Territories.</li>
+              </div> -->
+
+            <!-- <div class="main mt-5 ">
+                <h5 class="font-medium">Electoral Collage</h5>
+                <li>The President is elected by an Electoral College comprising:</li>
+                <li>Elected members of both Houses of Parliament.</li>
+                <li>Elected members of the Legislative Assemblies of States and Union Territories.</li> -->
+
+                <!-- <div id="content"></div> -->
+              <!-- </div> -->
+              
+              <img id="pic" src="/assets/image/president.jpg" alt="" />
+            </div>
+            <video
+            id="videoPlayer"
+            width="800"
+            height="100%"
+            controls
+            style="display: none;"
+          >
+            <source
+              id="videoSource"
+              src=""
+              style="height: 100%"
+              type="video/mp4"
+            />
+            Your browser does not support HTML video.
+          </video>
+            <div
+            class="img w-2/5 justify-center items-center flex"
+            style="display: none"
+            >
+            <!-- <video src="POP FINAL.mp4" controls="muted"></video> -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <span
+      ><a
+        href="https://cdn.botpress.cloud/webchat/v2/shareable.html?botId=5660f761-bfd1-46cf-b3b6-2a24afb58160"
+        target="_blank"
+        ><i class="fa-solid fa-robot bot"></i></a
+    ></span>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="/assets/js/scriptd.js"></script>
+    <script src="/assets/js/scriptd2.js"></script>
+    <script src="/assets/js/scriptd3.js"></script>
+  </body>
+</html>

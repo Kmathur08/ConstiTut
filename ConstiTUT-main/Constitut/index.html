@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <title>ConstiTUT</title>
+  </head>
+  <body>
+    <header>
+      <nav
+        class="w-full text-white overflow-hidden"
+        style="background-color: #2a2a2a"
+      >
+        <div class="relative w-full">
+          <div
+            class="mx-auto flex max-w-9xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8 text-white"
+          >
+            <div class="inline-flex items-center space-x-2 text-white">
+              <span>
+                <img src="/assets/image/logo2.png" style="width: 50px" />
+              </span>
+              <span class="font-bold"></span>
+            </div>
+            <div class="hidden lg:block">
+              <ul class="inline-flex space-x-12 gap-x-10">                <li>
+                  <a
+                    href="index.html"
+                    class="text-sm font-semibold text-800 hover:text-gray-400"
+                  >
+                    <i class="fa-solid fa-house"></i>
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-sm font-semibold text-800 hover:text-gray-400"
+                  >
+                    <i class="fa-solid fa-circle-question"></i>
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="study.html"
+                    class="text-sm font-semibold text-800 hover:text-gray-400"
+                  >
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    Study material
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-sm font-semibold text-800 hover:text-gray-400"
+                  >
+                    <i class="fa-solid fa-book-bookmark"></i>
+                    Dashboard
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="hidden lg:block">
+              <div class="isolate flex flex-col text-center -space-x-2">
+                <!-- <img
+                  class="relative z-0 inline-block h-8 w-8 rounded-full ring-2 ring-white"
+                  src="https://nextjs.org/_next/image?url=https%3A%2F%2Fwww.datocms-assets.com%2F35255%2F1665059775-delba.jpg&amp;w=640&amp;q=75"
+                  alt="Delba"
+                /> -->
+                <i class="fa-solid fa-user"></i>
+                <span>Yash</span>
+              </div>
+            </div>
+            <div class="lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="h-6 w-6 cursor-pointer"
+              >
+                <line x1="4" y1="12" x2="20" y2="12"></line>
+                <line x1="4" y1="6" x2="20" y2="6"></line>
+                <line x1="4" y1="18" x2="20" y2="18"></line>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="hero">
+      <div class="rounded-lg p-1 relative">
+        <img
+          class="aspect-[3/2] w-full rounded-lg bg-gray-50 lg:aspect-auto lg:h-[700px]"
+          src="/assets/image/hero.png"
+          alt=""
+        />
+        <div class="constitute flex flex-col absolute">
+          <h1 class="flex flex-col font-bold gap-1 pop">
+            <span class="text-black-800 text-7xl">Learn</span>
+            <span class="text-orange-400 text-8xl"> Constitution</span>
+          </h1>
+          <p class="text-3xl mb-4">In your way, In your pace</p>
+          <button
+            type="button"
+            class="rounded-md max-w-60 bg-black py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+          >
+            <a href="dash.html">Start Learning</a>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cards m-10 mt-20 flex flex-col gap-28">
+      <div
+        class="card flex gap-52 bg-white rounded-xl shadow-2xl px-4 pl-8 justify-between scroll-animation items-center"
+        style="height: 450px"
+      >
+        <div class="content pop flex flex-col gap-5">
+          <h1 class="text-black-600 text-7xl font-semibold">
+            Wha<span class="text-green-400">t</span>
+          </h1>
+          <p class="text-black-600 text-2xl max-w-5xl">
+            Sansthaein aur Samvidhan is a free online platform where you can
+            learn about the structure and formation of the Indian democracy.
+          </p>
+        </div>
+        <img
+          src="/assets/image/laptop2.png"
+          class="max-w-xl max-h-3xl"
+          alt=""
+        />
+      </div>
+
+      <div
+        class="card flex gap-52 bg-white rounded-xl shadow-2xl px-4 pr-8 justify-between scroll-animation items-center"
+        style="height: 450px"
+      >
+        <img src="/assets/image/kitab2.png" class="max-w-xl max-h-3xl" alt="" />
+        <div class="content pop flex flex-col gap-5">
+          <h1 class="text-black-600 text-7xl font-semibold">
+            Wh<span class="text-yellow-400">y</span>
+          </h1>
+          <p class="text-black-600 text-2xl max-w-5xl">
+            We are on a mission to spread democratic literacy among students to
+            inspire them to take active participation in civic duties.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="how flex justify-center flex-col gap-20 text-center mt-36">
+      <h1 class="text-black-400 text-7xl font-semibold">
+        Ho<span class="text-orange-400 text-7xl font-semibold">w...</span>
+      </h1>
+      <div class="rectangles flex justify-center gap-16">
+        <div
+          class="rect items-center flex flex-col justify-center bg-white rounded-xl p-8 w-64 h-80 shadow-2xl"
+        >
+          <img src="assets/image/aadmi.jpg" class="w-28 h-28" alt="" />
+          <div>
+            <h1 class="patrick font-semibold text-3xl">LEARN</h1>
+            <p class="patrick text-xl">
+              Learn the fundamental of the structure of the government through
+              case studies and lessons
+            </p>
+          </div>
+        </div>
+        <div
+          class="rect items-center flex flex-col justify-center bg-white rounded-xl p-8 w-64 h-80 shadow-2xl"
+        >
+          <img src="assets/image/sawal2.png" class="w-44 h-40" alt="" />
+          <div>
+            <h1 class="patrick font-semibold text-3xl">APPLY</h1>
+            <p class="patrick text-xl">
+              Learn the fundamental of the structure of the government through
+              case studies and lessons
+            </p>
+          </div>
+        </div>
+        <div
+          class="rect items-center flex flex-col justify-center bg-white rounded-xl p-8 w-64 h-80 shadow-2xl"
+        >
+          <img src="assets/image/tappers.jpg" class="w-32 h-32" alt="" />
+          <div>
+            <h1 class="patrick font-semibold text-3xl">TRACK</h1>
+            <p class="patrick text-xl">
+              Learn the fundamental of the structure of the government through
+              case studies and lessons
+            </p>
+          </div>
+        </div>
+        <div
+          class="rect items-center flex flex-col justify-center bg-white rounded-xl p-8 w-64 h-80 shadow-2xl"
+        >
+          <img src="assets/image/kagaz.jpg" class="w-32 h-32" alt="" />
+
+          <div>
+            <h1 class="patrick font-semibold text-3xl">GAIN</h1>
+            <p class="patrick text-xl">
+              Learn the fundamental of the structure of the government through
+              case studies and lessons
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div
+      class="partition flex flex-col items-center gap-10 justify-center mt-36"
+    >
+      <h1 class="text-black-400 text-4xl font-bold">The better way</h1>
+      <div class="modes flex gap-5 w-4/5">
+        <div
+          class="kids rounded-xl border-2 items-center justify-center flex border-black w-1/2 h-96 hover:bg-gray-200"
+        >
+          <h1 class="text-3xl font-bold w-1/2">Kids Mode Dashboard</h1>
+        </div>
+        <div
+          class="adult rounded-xl border-2 items-center justify-center flex border-black w-1/2 h-96 hover:bg-gray-200"
+        >
+          <h1 class="text-3xl font-bold w-1/2">Adults Mode Dashboard</h1>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="wrap w-full flex justify-center">
+      <div
+        class="interesting w-4/5 flex justify-around rounded-xl shadow-2xl bg-white items-center h-96 mt-36"
+      >
+        <h1 class="text-4xl font-semibold w-1/4">
+          We made learning
+          <span class="text-orange-400">more interesting</span> by
+          introducing...
+        </h1>
+        <div class="feat flex flex-wrap w-96 gap-5">
+          <div class="flex flex-col items-center font-medium">
+            <img
+              class="w-28 h-28 rounded-lg border-2"
+              src="/assets/image/cookies2.png"
+              alt=""
+            />Badges
+          </div>
+          <div class="flex flex-col items-center font-medium">
+            <img
+              class="w-28 h-28 rounded-lg border-2"
+              src="/assets/image/aag2.png"
+              alt=""
+            />Daily Streak
+          </div>
+          <div class="flex flex-col items-center font-medium">
+            <img
+              class="w-28 h-28 rounded-lg border-2"
+              src="/assets/image/jeet2.png"
+              alt=""
+            />Leaderboard
+          </div>
+          <div class="flex flex-col items-center font-medium ml-16">
+            <img
+              class="w-28 h-28 rounded-lg border-2"
+              src="/assets/image/board2.png"
+              alt=""
+            />Games
+          </div>
+          <div class="flex flex-col items-center font-medium">
+            <img
+              class="w-28 h-28 rounded-lg border-2"
+              src="/assets/image/pyramid2.png"
+              alt=""
+            />Levels
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap flex h-full mt-36 justify-center mb-10">
+      <div class="certificate gap-28 flex w-4/5 bg">
+        <div class="info flex flex-col gap-10">
+          <h1 class="text-7xl font-semibold">Get a certificate</h1>
+          <p class="text-3xl font-normal">
+            Complete courses to get a presonalised certificate to get perks in
+            various academic fields
+          </p>
+        </div>
+        <img class="w-2/5" src="/assets/image/certificate.png" alt="" />
+      </div>
+    </div>
+
+    <footer>
+      <section
+        class="relative overflow-hidden py-10 bg-black text-white-800 mt-36"
+      >
+        <div class="relative z-10 mx-auto max-w-7xl px-4 text-white-800">
+          <div class="-m-6 flex flex-wrap justify-around text-white-800">
+            <div class="w-full p-6 md:w-1/2 lg:w-2/12 text-white">
+              <div class="h-full text-white">
+                <h3 class="tracking-px mb-9 text-xs font-semibold uppercase">
+                  Activities
+                </h3>
+                <ul>
+                  <li class="mb-4">
+                    <a
+                      class="text-base font-medium hover:text-gray-400"
+                      href="#"
+                    >
+                      About Constitution
+                    </a>
+                  </li>
+                  <li class="mb-4">
+                    <a
+                      class="text-base font-medium hover:text-gray-400"
+                      href="#"
+                    >
+                      Study Material
+                    </a>
+                  </li>
+                  <li class="mb-4">
+                    <a
+                      class="text-base font-medium hover:text-gray-400"
+                      href="#"
+                    >
+                      Dashboard
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="w-full p-6 md:w-1/2 lg:w-2/12 text-white">
+              <div class="h-full">
+                <h3 class="tracking-px mb-9 text-xs font-semibold uppercase">
+                  Support
+                </h3>
+                <ul>
+                  <li class="mb-4">
+                    <a
+                      class="text-base font-medium hover:text-gray-400"
+                      href="#"
+                    >
+                      Account
+                    </a>
+                  </li>
+                  <li class="mb-4">
+                    <a
+                      class="text-base font-medium hover:text-gray-400"
+                      href="#"
+                    >
+                      Help
+                    </a>
+                  </li>
+                  <li class="mb-4">
+                    <a
+                      class="text-base font-medium hover:text-gray-400"
+                      href="#"
+                    >
+                      Contact Us
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      class="text-base font-medium hover:text-gray-400"
+                      href="#"
+                    >
+                      Customer Support
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="w-full p-6 md:w-1/2 lg:w-3/12 text-white">
+              <div class="h-full">
+                <h3 class="tracking-px mb-9 text-xs font-semibold uppercase">
+                  Legals
+                </h3>
+                <ul>
+                  <li class="mb-4">
+                    <a
+                      class="text-base font-medium hover:text-gray-400"
+                      href="#"
+                    >
+                      Terms &amp; Conditions
+                    </a>
+                  </li>
+                  <li class="mb-4">
+                    <a
+                      class="text-base font-medium hover:text-gray-400"
+                      href="#"
+                    >
+                      Privacy Policy
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      class="text-base font-medium hover:text-gray-400"
+                      href="#"
+                    >
+                      Licensing
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </footer>
+
+    <!-- <div
+      class="section flex justify-center items-center flex-col gap-20 text-center mt-36"
+    >
+      <h1 class="text-black-400 text-4xl font-bold w-1/2">
+        Understand Constituion in the most interactive way possible
+      </h1>
+      <div
+        class="container flex flex-col justify-around max-w-7xl bg-gray-100 lg:h-[500px] rounded-xl items-center"
+      >
+        <h1 class="text-600 text-5xl font-bold">
+          Parts of
+          <span class="text-cyan-600 text-5xl font-bold"
+            >Indian Government</span
+          >
+        </h1>
+
+        <div class="boxes flex gap-28">
+          <div class="box bg-cyan-600 rounded-xl p-8 w-60 h-80"></div>
+
+          <div class="box bg-red-500 rounded-xl p-8 w-60 h-80"></div>
+
+          <div class="box bg-green-600 rounded-xl p-8 w-60 h-80"></div>
+        </div>
+      </div>
+    </div> -->
+
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
