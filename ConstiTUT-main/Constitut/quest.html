@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constitutional Quest</title>
+    <link rel="stylesheet" href="/assets/css/styleq.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-board">
+            <div class="board-cell" id="cell-0">Start</div>
+            <div class="board-row">
+                <div class="board-cell" id="cell-1">Start - The Union Government</div>
+                <div class="board-cell" id="cell-2">Article 53 - Executive Power of the President</div>
+                <div class="board-cell" id="cell-3">Presidential Term - 5 Years</div>
+                <div class="board-cell" id="cell-4">Electoral College Elects the President</div>
+                <div class="board-cell" id="cell-5">Article 75 - Dissolution of Lok Sabha</div>
+            </div>
+            <div class="board-row">
+                <div class="board-cell" id="cell-6">Article 61 - Presidential Impeachment</div>
+                <div class="board-cell" id="cell-7">Article 75 - Council of Ministers</div>
+                <div class="board-cell" id="cell-8">Union Cabinet - Implementation of Laws</div>
+                <div class="board-cell" id="cell-9">President's Rule - 1 Year</div>
+                <div class="board-cell" id="cell-10">Article 76 - Attorney General of India</div>
+            </div>
+            <div class="board-row">
+                <div class="board-cell" id="cell-11">Article 154 - Governor's Powers</div>
+                <div class="board-cell" id="cell-12">Governor's Term - 5 Years</div>
+                <div class="board-cell" id="cell-13">Governor Appointed by President</div>
+                <div class="board-cell" id="cell-14">Article 246 - Division of Powers</div>
+                <div class="board-cell" id="cell-15">Governor Dissolves Assembly</div>
+            </div>
+            <div class="board-row">
+                <div class="board-cell" id="cell-16">Article 174 - Dissolution of Assembly</div>
+                <div class="board-cell" id="cell-17">Article 170 - Composition of State Legislature</div>
+                <div class="board-cell" id="cell-18">Minimum Age for Assembly - 25 Years</div>
+                <div class="board-cell" id="cell-19">Governor Appoints Chief Minister</div>
+                <div class="board-cell" id="cell-20">Article 324 - State Election Commission</div>
+            </div>
+            <div class="board-row">
+                <div class="board-cell" id="cell-21">Article 200 - Bills Reserved for President</div>
+                <div class="board-cell" id="cell-22">Governor Appoints High Court Judges</div>
+                <div class="board-cell" id="cell-23">Article 168 - State Legislature Powers</div>
+                <div class="board-cell" id="cell-24">Minimum Age for Legislative Council - 30 Years</div>
+                <div class="board-cell" id="cell-25">Article 162 - Law and Order in State</div>
+            </div>
+      
+            <div class="board-cell" id="cell-26">End</div>
+            <!-- Player Token -->
+            <div  ><img class="player-token" id="player-token" src="/assets/image/player.svg" alt=""></div>
+        </div>
+        <div class="controls">
+            <button id="roll-dice">Roll Dice</button>
+            <div class="dice" id="dice">🎲</div>
+            <!-- <button id="reset-board">Reset Board</button> -->
+        </div>
+    </div>
+    
+
+<!-- Modal for Questions -->
+<div id="question-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="close-modal">&times;</span>
+        <p id="question-text"></p>
+        <div id="options-container">
+            <!-- Options will be dynamically generated here -->
+        </div>
+    </div>
+</div>
+
+
+    <script src="/assets/js/scriptq.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+</body>
+</html>

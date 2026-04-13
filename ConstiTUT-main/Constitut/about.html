@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - ConstiTUT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+  />
+    <!-- <link rel="stylesheet" href="style2.css"> -->
+    <link rel="shortcut icon" href="/assets/image/logo2.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <nav
+          class="w-full text-white overflow-hidden"
+          style="background-color: #2a2a2a"
+        >
+          <div class="relative w-full">
+            <div
+              class="mx-auto flex max-w-9xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8 text-white"
+            >
+              <div class="inline-flex items-center space-x-2 text-white">
+                <span>
+                  <img src="/assets/image/logo2.png" style="width: 50px" />
+                </span>
+                <span class="font-bold"></span>
+              </div>
+              <div class="hidden lg:block">
+                <ul class="inline-flex space-x-12 gap-x-10">                <li>
+                    <a
+                      href="index.html"
+                      class="text-sm font-semibold text-800 hover:text-gray-400"
+                    >
+                      <i class="fa-solid fa-house"></i>
+                      Home
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="about.html"
+                      class="text-sm font-semibold text-800 hover:text-gray-400"
+                    >
+                      <i class="fa-solid fa-circle-question"></i>
+                      About
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="study.html"
+                      class="text-sm font-semibold text-800 hover:text-gray-400"
+                    >
+                      <i class="fa-solid fa-graduation-cap"></i>
+                      Study material
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      class="text-sm font-semibold text-800 hover:text-gray-400"
+                    >
+                      <i class="fa-solid fa-book-bookmark"></i>
+                      Dashboard
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="hidden lg:block">
+                <div class="isolate flex flex-col text-center -space-x-2">
+                  <!-- <img
+                    class="relative z-0 inline-block h-8 w-8 rounded-full ring-2 ring-white"
+                    src="https://nextjs.org/_next/image?url=https%3A%2F%2Fwww.datocms-assets.com%2F35255%2F1665059775-delba.jpg&amp;w=640&amp;q=75"
+                    alt="Delba"
+                  /> -->
+                  
+                  <a href="signup.html"><i class="fa-solid fa-user"></i></a>
+                  <span id="user"></span>
+                </div>
+              </div>
+              <div class="lg:hidden">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-6 w-6 cursor-pointer"
+                >
+                  <line x1="4" y1="12" x2="20" y2="12"></line>
+                  <line x1="4" y1="6" x2="20" y2="6"></line>
+                  <line x1="4" y1="18" x2="20" y2="18"></line>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+    <header class="header">
+        <h1>About Us</h1>
+        <p>Explore the Constitution of India in a fun and interactive way!</p>
+    </header>
+
+    <style>
+        body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.header {
+    background-color: #e0e0e0;
+    padding: 40px 20px;
+    text-align: center;
+    border-bottom: 3px solid #d4a5a5;
+    animation: fadeIn 1.5s ease-in;
+}
+
+h1 {
+    color: #3b6978;
+    font-size: 3rem;
+}
+
+p {
+    font-size: 1.2rem;
+}
+
+.about-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 50px;
+    background-color: #f9f9f9;
+}
+
+.about-content {
+    max-width: 600px;
+    animation: slideIn 1.5s ease-out;
+}
+
+h2 {
+    color: #69a2b0;
+    font-size: 2.5rem;
+}
+
+h3 {
+    color: #f4a261;
+    margin-top: 20px;
+}
+
+.about-content ul {
+    font-size: 18px;
+    line-height: 1.6;
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 20px;
+}
+
+
+
+.cta-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #69a2b0;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.cta-button:hover {
+    background-color: #3b6978;
+}
+
+.about-image img {
+    width: 400px;
+    height: auto;
+    border-radius: 10px;
+    border: 3px solid #d4a5a5;
+}
+
+.features-section {
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 50px 20px;
+}
+
+.features-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.feature-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    width: 30%;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.feature-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.feature-card h4 {
+    color: #f4a261;
+    margin-bottom: 15px;
+}
+
+        /* Team Section */
+        .team-section {
+            background-color: #e0f7fa;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .team-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .team-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            width: 325px;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .team-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .team-card h4 {
+            color: #69a2b0;
+            margin-bottom: 10px;
+        }
+
+
+/* Footer */
+.footer {
+    background-color: #3b6978;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    margin-top: 40px; /* To create some space above the footer */
+    clear: both; /* Ensures footer stays below content */
+    font-size: 1rem;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+    </style>
+
+    <section class="about-section">
+        <div class="about-content">
+            <h2>Welcome to ConstiTUT</h2>
+            <p>We believe that learning about the Constitution of India should be fun, engaging, and accessible to all. That's why we’ve created a unique platform that simplifies the articles of the Indian Constitution with a focus on the Legislature, Executive, and Judiciary. Through interactive games, quizzes, and multimedia lessons, students and citizens alike can explore the Constitution like never before!</p>
+
+            <h3>Our Mission</h3>
+            <p>Our mission is to promote constitutional literacy among Indian citizens, especially the youth. We aim to make the Constitution of India easy to understand by breaking it down into bite-sized, fun learning modules. With our gamified approach, we hope to foster a generation of citizens who are well-informed about their rights, duties, and the structure of the Indian government.</p>
+
+            <h3>What We Offer</h3>
+            <ul>
+                <li><strong>Interactive Games:</strong> Learn through activities like quizzes, board games, and spin-the-wheel challenges.</li>
+                <li><strong>Gamified Lessons:</strong> Each lesson on the Constitution is broken down into easy-to-understand summaries, with rewards and achievements to keep you motivated.</li>
+                <li><strong>Multimedia Resources:</strong> Explore videos, animations, and infographics to enhance your understanding of constitutional articles.</li>
+                <li><strong>Progress Tracking:</strong> Track your learning journey and earn badges as you complete different modules!</li>
+            </ul>
+
+            <a href="index.html" class="cta-button">Start Learning Now!</a>
+        </div>
+
+        <div class="about-image">
+            <img src="/assets/image/about.jpg" alt="Gamified Learning">
+        </div>
+    </section>
+
+    <section class="features-section">
+        <h3>Explore Features</h3>
+        <div class="features-container">
+            <div class="feature-card">
+                <h4>Quizzes</h4>
+                <p>Challenge your knowledge with fun quizzes and win rewards!</p>
+            </div>
+            <div class="feature-card">
+                <h4>Games</h4>
+                <p>Learn the Constitution through interactive games and puzzles.</p>
+            </div>
+            <div class="feature-card">
+                <h4>Multimedia Lessons</h4>
+                <p>Watch videos, animations, and more to grasp complex topics easily.</p>
+            </div>
+        </div>
+    </section>
+
+        <!-- Our Team Section -->
+        <section class="team-section">
+            <h2>Our Team</h2>
+            <div class="team-container">
+                <div class="team-card">
+                    <h4>Kshitij Mathur</h4>
+                    <p><a href="https://www.linkedin.com/in/kshitij-mathur-b8b257288?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="linkedin-button" target="_blank">View LinkedIn</a></p>
+                </div>
+                <div class="team-card">
+                    <h4>Ishanvi Agarwal</h4>
+                    <p><a href="https://www.linkedin.com/in/ishanvi-agrawal-5312a4287?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="linkedin-button" target="_blank">View LinkedIn</a></p>
+                </div>
+                <div class="team-card">
+                    <h4>Katyayini Sharma</h4>
+                    <p><a href="https://www.linkedin.com/in/katyayini-sharma-4554b9320?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="linkedin-button" target="_blank">View LinkedIn</a></p>
+                </div>
+                <div class="team-card">
+                    <h4>Jaideep Singh Chouhan</h4>
+                    <p><a href="https://www.linkedin.com/in/jaideep-singh-chouhan-4537ab302/" class="linkedin-button" target="_blank">View LinkedIn</a></p>
+                </div>
+            </div>
+        </section>
+    
+
+
+    <footer class="footer">
+        <p>&copy; 2024 ConstiTUT. All rights reserved.</p>
+    </footer>
+</body>
+</html>
