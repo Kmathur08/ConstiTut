@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.selected {
+    background-color: #d0e2ff; /* Color when selected */
+  }
+#element:hover{
+    background-color: #d0e2ff;
+}  
+#quiz-btn:hover{
+    background-color: #d0e2ff;
+}  
+
+#pic
+{
+    height: 100%;
+}
+
+.bot
+{
+    font-size: 35px;
+    position: absolute;
+    bottom: 40px;
+    right: 50px;
+}

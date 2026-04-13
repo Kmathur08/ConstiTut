@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="/assets/css/Crossword.css">
+        <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <table class="outer">
+        <tr> <!--1-->
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td id="a1" class="white1"><sup>1</sup>P</td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+        </tr>
+
+        <tr> <!--2-->
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td id="a2" class="white1"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+        </tr>
+
+        <tr> <!--3-->
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td id="a3" class="white1"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+        </tr>
+
+        <tr> <!--4-->
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td id="a4" class="white1"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+        </tr>
+
+        <tr> <!--5-->
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td id="e1" class="white1"><sup>2</sup></td>
+            <td class="white2"></td>
+            <td id="a5" class="white1"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+        </tr>
+
+        <tr> <!--6-->
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td id="e2" class="white1">I</td>
+            <td class="white2"></td>
+            <td id="a6" class="white1"></td>
+            <td class="white2"></td>
+            <td id="g1" class="white1"><sup>3</sup></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+        </tr>
+
+        <tr> <!--7-->
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td id="d1" class="white1"><sup>4</sup></td>
+            <td class="white2"></td>
+            <td id="e3" class="white1"></td>
+            <td class="white2"></td>
+            <td id="a7" class="white1"></td>
+            <td class="white2"></td>
+            <td id="g2" class="white1"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+        </tr>
+
+        <tr> <!--8-->
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td id="c1" class="white1"><sup>5</sup></td>
+            <td id="c2" class="white1"></td>
+            <td id="c3" class="white1">A</td>
+            <td id="c4" class="white1"></td>
+            <td id="c5" class="white1">E</td>
+            <td id="c6" class="white1"></td>
+            <td id="a8" class="white1"></td>
+            <td id="c7" class="white1"></td>
+            <td id="c8" class="white1">I</td>
+            <td id="c9" class="white1"></td>
+            <td id="c10" class="white1"></td>
+            <td id="c11" class="white1"></td>
+            <td id="c12" class="white1"></td>
+            <td id="c13" class="white1"></td>
+            <td id="c14" class="white1"></td>
+            <td id="c15" class="white1"></td>
+            <td id="c16" class="white1"><sup>6</sup>S</td>
+        </tr>
+
+        <tr> <!--9-->
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td id="d2" class="white1"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td id="a9" class="white1"></td>
+            <td class="white2"></td>
+            <td id="g3" class="white1"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td id="f1" class="white1"></td>
+        </tr>
+
+        <tr> <!--10-->
+            <td id="b1" class="white1"><sup>7</sup></td>
+            <td id="b2" class="white1"></td>
+            <td id="b3" class="white1"></td>
+            <td id="b4" class="white1"></td>
+            <td id="b5" class="white1"></td>
+            <td id="b6" class="white1"></td>
+            <td id="b7" class="white1">H</td>
+            <td id="b8" class="white1"></td>
+            <td id="b9" class="white1"></td>
+            <td id="b10" class="white1"></td>
+            <td id="a10" class="white1">T</td>
+            <td class="white2"></td>
+            <td id="g4" class="white1"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td id="f2" class="white1"></td>
+        </tr>
+
+        <tr> <!--11-->
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td id="g5" class="white1"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+        </tr>
+
+        <tr> <!--12-->
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td id="g6" class="white1">F</td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+        </tr>
+
+        <tr> <!--13-->
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td id="g7" class="white1"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+        </tr>
+
+        <tr> <!--14-->
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td id="g8" class="white1"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+        </tr>
+
+        <tr> <!--15-->
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td id="g9" class="white1"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+            <td class="white2"></td>
+        </tr>
+
+    </table>
+
+    <div class="questions">
+        <h3>Across</h3>
+        <p>5. The body that elects the President includes elected members of Parliament and _________.</p>
+        <p>7. The President can be removed from office by this process.</p>
+        <br\><br\>
+        <h3>Down</h3>
+        <p>1. During the term, the President shall not be a member of any _________</p>
+        <p>2. Term of the President is ______ years.</p>
+        <p>3. Minimum age required to be eligible for the office of President</p>
+        <p>4. The President takes an _______ of office before assuming duties.</p>
+        <p>6. In case of a vacancy, a new election must be held within ______ months.</p>
+        <p id="message"></p>
+        <input type="text" id="input1" placeholder="Enter your answers here" class="answer"><br>
+        <button onclick="Submit1()" class="button">SUBMIT</button>
+    </div>
+
+    
+    <script src="/assets/js/Crossword.js"></script>
+</body>
+</html>
