@@ -15,12 +15,12 @@
 <body>
     <header>
         <nav
-          class="w-full text-white overflow-hidden"
-          style="background-color: #2a2a2a"
+          class="fixed inset-x-0 top-0 z-50 w-full text-white bg-slate-900/95 backdrop-blur-md shadow-lg"
+          style="background-color: rgba(42, 42, 42, 0.95);"
         >
           <div class="relative w-full">
             <div
-              class="mx-auto flex max-w-9xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8 text-white"
+              class="mx-auto flex max-w-9xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8 text-white"
             >
               <div class="inline-flex items-center space-x-2 text-white">
                 <span>
@@ -40,15 +40,6 @@
                   </li>
                   <li>
                     <a
-                      href="about.html"
-                      class="text-sm font-semibold text-800 hover:text-gray-400"
-                    >
-                      <i class="fa-solid fa-circle-question"></i>
-                      About
-                    </a>
-                  </li>
-                  <li>
-                    <a
                       href="study.html"
                       class="text-sm font-semibold text-800 hover:text-gray-400"
                     >
@@ -58,26 +49,29 @@
                   </li>
                   <li>
                     <a
-                      href="#"
+                      href="dash.html"
                       class="text-sm font-semibold text-800 hover:text-gray-400"
                     >
                       <i class="fa-solid fa-book-bookmark"></i>
                       Dashboard
                     </a>
                   </li>
+                  <li>
+                    <a
+                      href="about.html"
+                      class="text-sm font-semibold text-800 hover:text-gray-400"
+                    >
+                      <i class="fa-solid fa-circle-question"></i>
+                      About
+                    </a>
+                  </li>
                 </ul>
               </div>
               <div class="hidden lg:block">
-                <div class="isolate flex flex-col text-center -space-x-2">
-                  <!-- <img
-                    class="relative z-0 inline-block h-8 w-8 rounded-full ring-2 ring-white"
-                    src="https://nextjs.org/_next/image?url=https%3A%2F%2Fwww.datocms-assets.com%2F35255%2F1665059775-delba.jpg&amp;w=640&amp;q=75"
-                    alt="Delba"
-                  /> -->
-                  
-                  <a href="signup.html"><i class="fa-solid fa-user"></i></a>
-                  <span id="user"></span>
-                </div>
+                <a id="authUserLink" class="isolate flex flex-col text-center -space-x-2 text-white" href="/signup.html">
+                  <i class="fa-solid fa-user"></i>
+                  <span>Login</span>
+                </a>
               </div>
               <div class="lg:hidden">
                 <svg
@@ -101,262 +95,123 @@
           </div>
         </nav>
       </header>
-    <header class="header">
-        <h1>About Us</h1>
-        <p>Explore the Constitution of India in a fun and interactive way!</p>
-    </header>
+      <div class="h-20"></div>
 
-    <style>
-        body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f5f5;
-    color: #333;
-}
+    <script src="assets/js/auth-nav.js"></script>
 
-.header {
-    background-color: #e0e0e0;
-    padding: 40px 20px;
-    text-align: center;
-    border-bottom: 3px solid #d4a5a5;
-    animation: fadeIn 1.5s ease-in;
-}
-
-h1 {
-    color: #3b6978;
-    font-size: 3rem;
-}
-
-p {
-    font-size: 1.2rem;
-}
-
-.about-section {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 50px;
-    background-color: #f9f9f9;
-}
-
-.about-content {
-    max-width: 600px;
-    animation: slideIn 1.5s ease-out;
-}
-
-h2 {
-    color: #69a2b0;
-    font-size: 2.5rem;
-}
-
-h3 {
-    color: #f4a261;
-    margin-top: 20px;
-}
-
-.about-content ul {
-    font-size: 18px;
-    line-height: 1.6;
-    list-style-type: none;
-    padding: 0;
-}
-
-ul li {
-    margin-bottom: 10px;
-    position: relative;
-    padding-left: 20px;
-}
-
-
-
-.cta-button {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #69a2b0;
-    color: white;
-    text-decoration: none;
-    border-radius: 10px;
-    transition: background-color 0.3s ease-in-out;
-}
-
-.cta-button:hover {
-    background-color: #3b6978;
-}
-
-.about-image img {
-    width: 400px;
-    height: auto;
-    border-radius: 10px;
-    border: 3px solid #d4a5a5;
-}
-
-.features-section {
-    text-align: center;
-    background-color: #f4f4f4;
-    padding: 50px 20px;
-}
-
-.features-container {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-}
-
-.feature-card {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    width: 30%;
-    text-align: center;
-    font-size: 1.1rem;
-}
-
-.feature-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.feature-card h4 {
-    color: #f4a261;
-    margin-bottom: 15px;
-}
-
-        /* Team Section */
-        .team-section {
-            background-color: #e0f7fa;
-            padding: 50px 20px;
-            text-align: center;
-        }
-
-        .team-container {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-        }
-
-        .team-card {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            width: 325px;
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        }
-
-        .team-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .team-card h4 {
-            color: #69a2b0;
-            margin-bottom: 10px;
-        }
-
-
-/* Footer */
-.footer {
-    background-color: #3b6978;
-    padding: 20px;
-    text-align: center;
-    color: #fff;
-    margin-top: 40px; /* To create some space above the footer */
-    clear: both; /* Ensures footer stays below content */
-    font-size: 1rem;
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@keyframes slideIn {
-    0% {
-        transform: translateX(-100%);
-    }
-    100% {
-        transform: translateX(0);
-    }
-}
-    </style>
-
-    <section class="about-section">
-        <div class="about-content">
-            <h2>Welcome to ConstiTUT</h2>
-            <p>We believe that learning about the Constitution of India should be fun, engaging, and accessible to all. That's why we’ve created a unique platform that simplifies the articles of the Indian Constitution with a focus on the Legislature, Executive, and Judiciary. Through interactive games, quizzes, and multimedia lessons, students and citizens alike can explore the Constitution like never before!</p>
-
-            <h3>Our Mission</h3>
-            <p>Our mission is to promote constitutional literacy among Indian citizens, especially the youth. We aim to make the Constitution of India easy to understand by breaking it down into bite-sized, fun learning modules. With our gamified approach, we hope to foster a generation of citizens who are well-informed about their rights, duties, and the structure of the Indian government.</p>
-
-            <h3>What We Offer</h3>
-            <ul>
-                <li><strong>Interactive Games:</strong> Learn through activities like quizzes, board games, and spin-the-wheel challenges.</li>
-                <li><strong>Gamified Lessons:</strong> Each lesson on the Constitution is broken down into easy-to-understand summaries, with rewards and achievements to keep you motivated.</li>
-                <li><strong>Multimedia Resources:</strong> Explore videos, animations, and infographics to enhance your understanding of constitutional articles.</li>
-                <li><strong>Progress Tracking:</strong> Track your learning journey and earn badges as you complete different modules!</li>
-            </ul>
-
-            <a href="index.html" class="cta-button">Start Learning Now!</a>
+    <main class="bg-slate-50">
+      <section class="max-w-6xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <p class="text-sm uppercase tracking-[0.3em] text-sky-600 mb-4">About ConstiTUT</p>
+          <h1 class="text-4xl font-bold text-slate-900 sm:text-5xl mb-6">Learn the Constitution in a Fun Way</h1>
+          <p class="text-xl text-slate-600 max-w-3xl mx-auto">We make understanding the Indian Constitution engaging and accessible through interactive games, quizzes, and multimedia lessons focused on the Legislature, Executive, and Judiciary.</p>
         </div>
 
-        <div class="about-image">
-            <img src="/assets/image/about.jpg" alt="Gamified Learning">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+          <div>
+            <h2 class="text-3xl font-semibold text-slate-900 mb-6">Our Mission</h2>
+            <p class="text-slate-600 mb-6 leading-relaxed">Our mission is to promote constitutional literacy among Indian citizens, especially the youth. We aim to make the Constitution of India easy to understand by breaking it down into bite-sized, fun learning modules. With our gamified approach, we hope to foster a generation of citizens who are well-informed about their rights, duties, and the structure of the Indian government.</p>
+            <a href="index.html" class="inline-flex items-center justify-center rounded-full bg-sky-600 px-6 py-3 text-sm font-semibold text-white shadow hover:bg-sky-700">Start Learning Now</a>
+          </div>
+          <div class="relative">
+            <img src="/assets/image/president.jpg" alt="Learning the Constitution" class="rounded-2xl shadow-xl w-full" />
+          </div>
         </div>
-    </section>
 
-    <section class="features-section">
-        <h3>Explore Features</h3>
-        <div class="features-container">
-            <div class="feature-card">
-                <h4>Quizzes</h4>
-                <p>Challenge your knowledge with fun quizzes and win rewards!</p>
-            </div>
-            <div class="feature-card">
-                <h4>Games</h4>
-                <p>Learn the Constitution through interactive games and puzzles.</p>
-            </div>
-            <div class="feature-card">
-                <h4>Multimedia Lessons</h4>
-                <p>Watch videos, animations, and more to grasp complex topics easily.</p>
-            </div>
-        </div>
-    </section>
-
-        <!-- Our Team Section -->
-        <section class="team-section">
-            <h2>Our Team</h2>
-            <div class="team-container">
-                <div class="team-card">
-                    <h4>Kshitij Mathur</h4>
-                    <p><a href="https://www.linkedin.com/in/kshitij-mathur-b8b257288?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="linkedin-button" target="_blank">View LinkedIn</a></p>
+        <section class="mb-20">
+          <h2 class="text-3xl font-semibold text-slate-900 text-center mb-12">About the Indian Constitution</h2>
+          <div class="bg-white rounded-xl p-8 shadow-lg">
+            <p class="text-slate-600 mb-6 leading-relaxed">The Constitution of India is the supreme law of India. It lays down the framework defining fundamental political principles, establishes the structure, procedures, powers and duties of government institutions and sets out fundamental rights, directive principles and the duties of citizens. It is the longest written constitution of any country on earth.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+              <div class="text-center">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <i class="fa-solid fa-gavel text-blue-600 text-xl"></i>
                 </div>
-                <div class="team-card">
-                    <h4>Ishanvi Agarwal</h4>
-                    <p><a href="https://www.linkedin.com/in/ishanvi-agrawal-5312a4287?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="linkedin-button" target="_blank">View LinkedIn</a></p>
+                <h3 class="text-lg font-semibold text-slate-900 mb-2">Preamble</h3>
+                <p class="text-slate-600 text-sm">The preamble declares India as a sovereign, socialist, secular, democratic republic.</p>
+              </div>
+              <div class="text-center">
+                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <i class="fa-solid fa-users text-green-600 text-xl"></i>
                 </div>
-                <div class="team-card">
-                    <h4>Katyayini Sharma</h4>
-                    <p><a href="https://www.linkedin.com/in/katyayini-sharma-4554b9320?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="linkedin-button" target="_blank">View LinkedIn</a></p>
+                <h3 class="text-lg font-semibold text-slate-900 mb-2">Fundamental Rights</h3>
+                <p class="text-slate-600 text-sm">Guarantees civil liberties to all citizens of India.</p>
+              </div>
+              <div class="text-center">
+                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <i class="fa-solid fa-crown text-purple-600 text-xl"></i>
                 </div>
-                <div class="team-card">
-                    <h4>Jaideep Singh Chouhan</h4>
-                    <p><a href="https://www.linkedin.com/in/jaideep-singh-chouhan-4537ab302/" class="linkedin-button" target="_blank">View LinkedIn</a></p>
-                </div>
+                <h3 class="text-lg font-semibold text-slate-900 mb-2">Directive Principles</h3>
+                <p class="text-slate-600 text-sm">Guidelines for the government to create social and economic conditions.</p>
+              </div>
             </div>
+          </div>
         </section>
-    
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white rounded-xl p-6 shadow-lg text-center">
+              <div class="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-brain text-sky-600 text-xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-slate-900 mb-3">Interactive Quizzes</h3>
+              <p class="text-slate-600">Challenge your knowledge with fun quizzes and win rewards to keep learning engaging.</p>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-lg text-center">
+              <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-gamepad text-green-600 text-xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-slate-900 mb-3">Gamified Lessons</h3>
+              <p class="text-slate-600">Learn through games, puzzles, and interactive challenges that make complex topics fun.</p>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-lg text-center">
+              <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-video text-purple-600 text-xl"></i>
+              </div>
+              <h3 class="text-xl font-semibold text-slate-900 mb-3">Multimedia Resources</h3>
+              <p class="text-slate-600">Explore videos, animations, and infographics to enhance your understanding.</p>
+            </div>
+          </div>
+        </section>
 
+        <section class="mb-20">
+          <h2 class="text-3xl font-semibold text-slate-900 text-center mb-12">Our Team</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="bg-white rounded-xl p-6 shadow-lg text-center">
+              <div class="w-16 h-16 bg-slate-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <i class="fa-solid fa-user text-slate-600 text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-slate-900 mb-2">Kshitij Mathur</h3>
+              <a href="https://www.linkedin.com/in/kshitij-mathur-b8b257288" target="_blank" class="text-sky-600 hover:text-sky-700 text-sm">View LinkedIn</a>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-lg text-center">
+              <div class="w-16 h-16 bg-slate-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <i class="fa-solid fa-user text-slate-600 text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-slate-900 mb-2">Ishanvi Agarwal</h3>
+              <a href="https://www.linkedin.com/in/ishanvi-agrawal-5312a4287" target="_blank" class="text-sky-600 hover:text-sky-700 text-sm">View LinkedIn</a>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-lg text-center">
+              <div class="w-16 h-16 bg-slate-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <i class="fa-solid fa-user text-slate-600 text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-slate-900 mb-2">Katyayini Sharma</h3>
+              <a href="https://www.linkedin.com/in/katyayini-sharma-4554b9320" target="_blank" class="text-sky-600 hover:text-sky-700 text-sm">View LinkedIn</a>
+            </div>
+            <div class="bg-white rounded-xl p-6 shadow-lg text-center">
+              <div class="w-16 h-16 bg-slate-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <i class="fa-solid fa-user text-slate-600 text-2xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-slate-900 mb-2">Jaideep Singh Chouhan</h3>
+              <a href="https://www.linkedin.com/in/jaideep-singh-chouhan-4537ab302" target="_blank" class="text-sky-600 hover:text-sky-700 text-sm">View LinkedIn</a>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
 
-    <footer class="footer">
+    <footer class="bg-slate-900 text-white py-8">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <p>&copy; 2024 ConstiTUT. All rights reserved.</p>
+      </div>
     </footer>
-</body>
+  </body>
 </html>

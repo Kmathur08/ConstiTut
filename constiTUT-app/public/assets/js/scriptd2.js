@@ -5,7 +5,7 @@ const img=document.getElementById('img');
 function fetchAndDisplayContent(heading) {
     // Convert heading to slug format
     const slugHeading = heading.split(' ').join('-'); // Convert spaces to hyphens
-    fetch(`http://localhost:3000/api/content/${slugHeading}`)
+    fetch(`/api/content/${slugHeading}`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Error fetching content');

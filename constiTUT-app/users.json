@@ -1,0 +1,10 @@
+{
+  "Kshitij": {
+    "name": "Kshitij Mathur",
+    "username": "Kshitij",
+    "email": "kmathur0811@gmail.com",
+    "passwordHash": "$2b$10$KStPxbcBKrZKhEUY0dpLKuQEJt0GacMFChJXRSQ1j.1ciiAnC3BGu",
+    "resetToken": "a2d3ea0bdbb3ca1fe00a03a5ea70e3ed710178f21430321e",
+    "resetTokenExpiry": 1776226877246
+  }
+}

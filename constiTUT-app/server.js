@@ -1,29 +1,313 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const fs = require('fs').promises;
+const session = require('express-session');
+const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
+const crypto = require('crypto');
 const app = express();
 const PORT = process.env.PORT || 3000;
+const USERS_FILE = path.join(__dirname, 'users.json');
+const SESSION_SECRET = process.env.SESSION_SECRET || 'constitut-secret';
+const RESET_TOKEN_EXPIRY_MS = 1000 * 60 * 60; // 1 hour
 
 // Middleware
-app.use(cors());
+app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
+app.use(session({
+  secret: SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 1000 * 60 * 60 * 24, httpOnly: true, sameSite: 'lax' }
+}));
+
+const PUBLIC_PATHS = [
+  '/signup.html',
+  '/reset-password.html',
+  '/api/auth/login',
+  '/api/auth/signup',
+  '/api/auth/forgot-password',
+  '/api/auth/reset-password',
+  '/api/auth/logout',
+  '/api/auth/session'
+];
+
+app.use((req, res, next) => {
+  if (req.path.startsWith('/assets') || req.path.startsWith('/api/auth') || PUBLIC_PATHS.includes(req.path)) {
+    return next();
+  }
+
+  if (req.path.startsWith('/api/')) {
+    if (!req.session.user) {
+      return res.status(401).json({ error: 'Unauthorized' });
+    }
+    return next();
+  }
+
+  if (!req.session.user) {
+    return res.redirect('/signup.html');
+  }
+
+  next();
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Data structures
-const leftside = [
-  {
-    heading: "President of India",
-    lesson: "Lesson 3: Power of President",
-    sub: [
-      "Powers of President",
-      "Role and Powers of President",
-      "Election of the President of India",
-      "Quiz",
-      "Crossword",
-      "Constitutional Quest"
-    ]
+async function loadUsers() {
+  try {
+    const data = await fs.readFile(USERS_FILE, 'utf8');
+    return data.trim() ? JSON.parse(data) : {};
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      return {};
+    }
+    throw err;
   }
-];
+}
+
+async function saveUsers(users) {
+  await fs.writeFile(USERS_FILE, JSON.stringify(users, null, 2), 'utf8');
+}
+
+function findUserByEmail(users, email) {
+  return Object.values(users).find(user => user.email.toLowerCase() === email.toLowerCase());
+}
+
+function createResetToken() {
+  return crypto.randomBytes(24).toString('hex');
+}
+
+async function sendPasswordResetEmail(to, resetUrl) {
+  const mailOptions = {
+    from: process.env.EMAIL_FROM || 'no-reply@constitut.app',
+    to,
+    subject: 'ConstiTUT Password Reset',
+    html: `<p>Click the link below to reset your password:</p><p><a href="${resetUrl}">Reset Password</a></p>`
+  };
+
+  if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS) {
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT || 587),
+      secure: process.env.SMTP_SECURE === 'true',
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS
+      }
+    });
+    return transporter.sendMail(mailOptions);
+  }
+
+  const testAccount = await nodemailer.createTestAccount();
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.ethereal.email',
+    port: 587,
+    secure: false,
+    auth: {
+      user: testAccount.user,
+      pass: testAccount.pass
+    }
+  });
+
+  const info = await transporter.sendMail(mailOptions);
+  console.log('Preview URL:', nodemailer.getTestMessageUrl(info));
+  return info;
+}
+
+function formatDateISO(date) {
+  return date.toISOString().slice(0, 10);
+}
+
+function getDateSet(history) {
+  return new Set((history || []).map(date => date.slice(0, 10)));
+}
+
+function getCurrentStreak(loginHistory) {
+  const dateSet = getDateSet(loginHistory);
+  let streak = 0;
+  let day = new Date();
+  while (true) {
+    const dayKey = formatDateISO(day);
+    if (dateSet.has(dayKey)) {
+      streak += 1;
+      day.setDate(day.getDate() - 1);
+    } else {
+      break;
+    }
+  }
+  return streak;
+}
+
+function getYearHeatmap(year, loginHistory) {
+  const loginSet = getDateSet(loginHistory);
+  const start = new Date(`${year}-01-01`);
+  const end = new Date(`${year}-12-31`);
+  const heatmap = [];
+  for (let day = new Date(start); day <= end; day.setDate(day.getDate() + 1)) {
+    const dateString = formatDateISO(day);
+    heatmap.push({ date: dateString, active: loginSet.has(dateString) });
+  }
+  return heatmap;
+}
+
+// Authentication routes
+app.post('/api/auth/signup', async (req, res) => {
+  const { name, username, email, password } = req.body;
+
+  if (!name || !username || !email || !password) {
+    return res.status(400).json({ error: 'All fields are required' });
+  }
+
+  const users = await loadUsers();
+
+  if (users[username]) {
+    return res.status(400).json({ error: 'Username already exists' });
+  }
+
+  if (findUserByEmail(users, email)) {
+    return res.status(400).json({ error: 'Email already registered' });
+  }
+
+  const passwordHash = await bcrypt.hash(password, 10);
+  users[username] = {
+    name,
+    username,
+    email,
+    passwordHash,
+    resetToken: null,
+    resetTokenExpiry: null,
+    loginHistory: []
+  };
+
+  await saveUsers(users);
+  res.json({ message: 'Signup successful' });
+});
+
+app.post('/api/auth/login', async (req, res) => {
+  const { username, password } = req.body;
+  const users = await loadUsers();
+  const user = users[username];
+
+  if (!user) {
+    return res.status(400).json({ error: 'Invalid username or password' });
+  }
+
+  const passwordMatches = await bcrypt.compare(password, user.passwordHash);
+  if (!passwordMatches) {
+    return res.status(400).json({ error: 'Invalid username or password' });
+  }
+
+  const today = formatDateISO(new Date());
+  user.loginHistory = user.loginHistory || [];
+  if (user.loginHistory[user.loginHistory.length - 1] !== today) {
+    user.loginHistory.push(today);
+    await saveUsers(users);
+  }
+
+  req.session.user = {
+    username: user.username,
+    name: user.name,
+    email: user.email
+  };
+
+  res.json({ message: 'Login successful' });
+});
+
+app.post('/api/auth/logout', (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      return res.status(500).json({ error: 'Logout failed' });
+    }
+    res.json({ message: 'Logged out' });
+  });
+});
+
+app.get('/api/auth/session', (req, res) => {
+  if (!req.session.user) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  res.json({ user: req.session.user });
+});
+
+app.get('/api/auth/profile', async (req, res) => {
+  if (!req.session.user) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  const users = await loadUsers();
+  const user = users[req.session.user.username];
+  if (!user) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+
+  const loginHistory = user.loginHistory || [];
+  const currentYear = new Date().getFullYear();
+  const heatmap = getYearHeatmap(currentYear, loginHistory);
+  const streak = getCurrentStreak(loginHistory);
+
+  res.json({
+    user: {
+      username: user.username,
+      name: user.name,
+      email: user.email
+    },
+    loginHistory,
+    heatmap,
+    currentYear,
+    streak,
+    totalLogins: loginHistory.length
+  });
+});
+
+app.post('/api/auth/forgot-password', async (req, res) => {
+  const { email } = req.body;
+
+  if (!email) {
+    return res.status(400).json({ error: 'Email is required' });
+  }
+
+  const users = await loadUsers();
+  const user = findUserByEmail(users, email);
+
+  if (!user) {
+    return res.status(400).json({ error: 'No account found with that email' });
+  }
+
+  const resetToken = createResetToken();
+  user.resetToken = resetToken;
+  user.resetTokenExpiry = Date.now() + RESET_TOKEN_EXPIRY_MS;
+  await saveUsers(users);
+
+  const resetUrl = `${req.protocol}://${req.get('host')}/reset-password.html?token=${resetToken}`;
+  await sendPasswordResetEmail(email, resetUrl);
+
+  res.json({ message: 'Password reset link sent to your email' });
+});
+
+app.post('/api/auth/reset-password', async (req, res) => {
+  const { token, newPassword } = req.body;
+
+  if (!token || !newPassword) {
+    return res.status(400).json({ error: 'Token and new password are required' });
+  }
+
+  const users = await loadUsers();
+  const user = Object.values(users).find(
+    userRecord => userRecord.resetToken === token && userRecord.resetTokenExpiry > Date.now()
+  );
+
+  if (!user) {
+    return res.status(400).json({ error: 'Invalid or expired reset token' });
+  }
+
+  user.passwordHash = await bcrypt.hash(newPassword, 10);
+  user.resetToken = null;
+  user.resetTokenExpiry = null;
+  await saveUsers(users);
+
+  res.json({ message: 'Password reset successful' });
+});
 
 const constitutionContent = [
   {
@@ -201,18 +485,24 @@ const quizData = [
 const videoData = require('./videoData');
 
 // API Routes
-app.get('/videos/:title', (req, res) => {
-  const title = req.params.title.replace(/-/g, ' ').toLowerCase();
+const normalizeHeading = heading => heading.toLowerCase().replace(/-/g, ' ').trim();
 
-  console.log("Requested title:", title);
-  console.log("Available titles:", Object.keys(videoData));
+app.get('/api/videos', (req, res) => {
+  const videos = Object.entries(videoData).map(([title, video_url]) => ({
+    title,
+    video_url
+  }));
+  res.json(videos);
+});
 
-  const matchedVideo = Object.keys(videoData).find(videoTitle =>
-    videoTitle.toLowerCase() === title
+app.get('/api/videos/:title', (req, res) => {
+  const requestedTitle = normalizeHeading(req.params.title);
+  const matchedTitle = Object.keys(videoData).find(videoTitle =>
+    normalizeHeading(videoTitle) === requestedTitle
   );
 
-  if (matchedVideo) {
-    res.json({ title: matchedVideo, video_url: videoData[matchedVideo] });
+  if (matchedTitle) {
+    res.json({ title: matchedTitle, video_url: videoData[matchedTitle] });
   } else {
     res.status(404).json({ error: 'Video not found' });
   }
@@ -231,13 +521,15 @@ app.get('/api/content', (req, res) => {
 });
 
 app.get('/api/content/:heading', (req, res) => {
-  const requestedHeading = req.params.heading.split('-').join(' ');
-  const content = constitutionContent.find(item => item.heading === requestedHeading);
+  const requestedHeading = normalizeHeading(req.params.heading);
+  const content = constitutionContent.find(item =>
+    normalizeHeading(item.heading) === requestedHeading
+  );
 
   if (content) {
     res.json(content);
   } else {
-    res.status(404).send('Content not found');
+    res.status(404).json({ error: 'Content not found' });
   }
 });
 

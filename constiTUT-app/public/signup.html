@@ -1,124 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup & Login</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ConstiTUT Login | Signup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* General Styles */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #edf2ff 0%, #d9e8ff 45%, #ffffff 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-
-        .form-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .page-shell {
             width: 100%;
-            max-width: 400px;
+            max-width: 1080px;
+            padding: 24px;
         }
 
-        form {
+        .hero-card {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 32px;
+            background: rgba(255, 255, 255, 0.94);
+            border-radius: 28px;
+            box-shadow: 0 28px 80px rgba(15, 23, 42, 0.12);
+            padding: 36px;
+            align-items: center;
+        }
+
+        .hero-panel {
             display: flex;
             flex-direction: column;
+            gap: 24px;
         }
 
-        form input {
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
+        .brand-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #2a2a2a;
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 999px;
+            font-weight: 700;
         }
 
-        form button {
-            background-color: #28a745;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+        .hero-title {
+            margin: 0;
+            font-size: clamp(2.4rem, 4vw, 3.8rem);
+            line-height: 1.05;
+            color: #111827;
         }
 
-        form button:hover {
-            background-color: #218838;
+        .hero-copy {
+            max-width: 520px;
+            color: #4b5563;
+            font-size: 1rem;
+            line-height: 1.75;
         }
 
-        .toggleButton {
-            margin-top: 15px;
-            background-color: #007bff;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
+        .form-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 16px 50px rgba(15, 23, 42, 0.08);
+        }
+
+        .form-card h2 {
+            margin: 0 0 18px;
+            color: #111827;
+            font-size: 1.75rem;
+        }
+
+        .form-card label {
+            display: block;
+            margin-bottom: 10px;
+            color: #374151;
+            font-weight: 600;
+        }
+
+        .form-card input {
             width: 100%;
-            text-align: center;
-            transition: background-color 0.3s;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 12px;
+            outline: none;
+            transition: border-color 0.2s ease;
         }
 
-        .toggleButton:hover {
-            background-color: #0056b3;
+        .form-card input:focus {
+            border-color: #2a2a2a;
         }
 
-        .hidden { 
-            display: none; 
+        .primary-button,
+        .secondary-button {
+            width: 100%;
+            border: none;
+            border-radius: 12px;
+            padding: 14px 18px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease;
         }
 
-        /* Responsive design */
-        @media (max-width: 500px) {
-            .form-container {
-                width: 90%;
+        .primary-button {
+            background: #2a2a2a;
+            color: white;
+        }
+
+        .primary-button:hover {
+            background: #111827;
+            transform: translateY(-1px);
+        }
+
+        .secondary-button {
+            margin-top: 10px;
+            background: #eef2ff;
+            color: #3730a3;
+        }
+
+        .secondary-button:hover {
+            background: #dde2ff;
+        }
+
+        .link-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            margin-top: 10px;
+            font-size: 0.95rem;
+            color: #4b5563;
+        }
+
+        .link-row a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .link-row a:hover {
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .hero-visual {
+            position: relative;
+            min-height: 420px;
+            border-radius: 28px;
+            overflow: hidden;
+            background: radial-gradient(circle at top left, #fef3c7 0%, #fef9c3 24%, transparent 55%), radial-gradient(circle at bottom right, #c7d2fe 0%, #eff6ff 35%, transparent 70%);
+        }
+
+        .hero-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 28px;
+        }
+
+        .hero-visual::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.2), rgba(255,255,255,0.7));
+        }
+
+        @media (max-width: 900px) {
+            .hero-card {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-visual {
+                min-height: 300px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <h2 id="formTitle">Signup</h2>
+    <main class="page-shell">
+        <section class="hero-card">
+            <div class="hero-panel">
+                <span class="brand-pill"><img src="assets/image/logo2.png" alt="ConstiTUT Logo" class="w-8 h-8 rounded-full" /> ConstiTUT</span>
+                <h1 class="hero-title">Welcome to the Indian Constitution learning portal</h1>
+                <p class="hero-copy">Login or create your account to continue. Your progress will be saved and you can reset your password anytime using your registered email.</p>
 
-        <!-- Signup Form -->
-        <form id="signupForm">
-            <input type="text" id="name" placeholder="Full Name" required>
-            <input type="text" id="signupUsername" placeholder="Username" required>
-            <input type="password" id="signupPassword" placeholder="Password" required>
-            <button type="submit">Signup</button>
-        </form>
+                <div class="form-card">
+                    <h2 id="formTitle">Signup</h2>
+                    <div id="authMessage" class="hidden rounded-xl px-4 py-3 mb-5 text-sm"></div>
 
-        <!-- Login Form -->
-        <form id="loginForm" class="hidden">
-            <input type="text" id="loginUsername" placeholder="Username" required>
-            <input type="password" id="loginPassword" placeholder="Password" required>
-            <button type="submit">Login</button>
-        </form>
+                    <!-- Signup Form -->
+                    <form id="signupForm">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="Full Name" required />
+                        <label for="signupUsername">Username</label>
+                        <input type="text" id="signupUsername" placeholder="Username" required />
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" placeholder="Email" required />
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" placeholder="Password" required />
+                        <button type="submit" class="primary-button">Signup</button>
+                    </form>
 
-        <!-- Toggle Button -->
-        <button id="toggleButton" class="toggleButton">Switch to Login</button>
-    </div>
+                    <!-- Login Form -->
+                    <form id="loginForm" class="hidden">
+                        <label for="loginUsername">Username</label>
+                        <input type="text" id="loginUsername" placeholder="Username" required />
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" placeholder="Password" required />
+                        <button type="submit" class="primary-button">Login</button>
+                        <button type="button" id="forgotPasswordButton" class="secondary-button">Forgot Password?</button>
+                    </form>
+
+                    <div class="link-row">
+                        <span>Already have an account?</span>
+                        <button id="toggleButton" class="secondary-button" style="width:auto; padding:10px 18px;">Switch to Login</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <img src="assets/image/hero.png" alt="ConstiTUT hero image" />
+            </div>
+        </section>
+    </main>
 
     <script>
         const signupForm = document.getElementById('signupForm');
         const loginForm = document.getElementById('loginForm');
         const toggleButton = document.getElementById('toggleButton');
         const formTitle = document.getElementById('formTitle');
+        const authMessage = document.getElementById('authMessage');
 
-        // Toggle between Signup and Login
+        function showAuthMessage(message, type = 'info') {
+            authMessage.textContent = message;
+            authMessage.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800', 'bg-blue-100', 'text-blue-800');
+            if (type === 'success') {
+                authMessage.classList.add('bg-green-100', 'text-green-800');
+            } else if (type === 'error') {
+                authMessage.classList.add('bg-red-100', 'text-red-800');
+            } else {
+                authMessage.classList.add('bg-blue-100', 'text-blue-800');
+            }
+        }
+
+        function clearAuthMessage() {
+            authMessage.classList.add('hidden');
+            authMessage.textContent = '';
+        }
+
         toggleButton.addEventListener('click', () => {
+            clearAuthMessage();
             if (signupForm.classList.contains('hidden')) {
                 signupForm.classList.remove('hidden');
                 loginForm.classList.add('hidden');
@@ -132,51 +274,67 @@
             }
         });
 
-        // Signup form handling
-        signupForm.addEventListener('submit', function(event) {
+        signupForm.addEventListener('submit', async function(event) {
             event.preventDefault();
+            clearAuthMessage();
 
-            const name = document.getElementById('name').value;
-            const username = document.getElementById('signupUsername').value;
+            const name = document.getElementById('name').value.trim();
+            const username = document.getElementById('signupUsername').value.trim();
+            const email = document.getElementById('signupEmail').value.trim();
             const password = document.getElementById('signupPassword').value;
 
-            if (localStorage.getItem(username)) {
-                alert('User already exists!');
-            } else {
-                // Create a user object and store it in localStorage
-                const user = {
-                    name: name,
-                    username: username,
-                    password: password
-                };
+            try {
+                const response = await fetch('/api/auth/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, username, email, password })
+                });
+                const data = await response.json();
 
-                localStorage.setItem(username, JSON.stringify(user)); // Store user object
-                alert('User signed up successfully! Redirecting to login...');
+                if (!response.ok) {
+                    throw new Error(data.error || 'Signup failed');
+                }
 
-                // Clear signup form
+                showAuthMessage('User signed up successfully! Please login now.', 'success');
                 signupForm.reset();
-
-                // Automatically switch to login form after successful signup
-                toggleButton.click();
+                if (!loginForm.classList.contains('hidden')) {
+                    toggleButton.click();
+                } else {
+                    toggleButton.click();
+                }
+            } catch (error) {
+                showAuthMessage(error.message, 'error');
             }
         });
 
-        // Login form handling
-        loginForm.addEventListener('submit', function(event) {
+        loginForm.addEventListener('submit', async function(event) {
             event.preventDefault();
+            clearAuthMessage();
 
-            const username = document.getElementById('loginUsername').value;
+            const username = document.getElementById('loginUsername').value.trim();
             const password = document.getElementById('loginPassword').value;
 
-            const storedUser = JSON.parse(localStorage.getItem(username)); // Get user object
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+                const data = await response.json();
 
-            if (storedUser && storedUser.password === password) {
-                alert('Login successful!');
-                window.location.href = 'index.html'; // Redirect to home page
-                loginForm.reset();
-            } else {
-                alert('Invalid username or password!');
+                if (!response.ok) {
+                    throw new Error(data.error || 'Login failed');
+                }
+
+                window.location.href = '/';
+            } catch (error) {
+                showAuthMessage(error.message, 'error');
             }
+        });
+
+        document.getElementById('forgotPasswordButton').addEventListener('click', function() {
+            clearAuthMessage();
+            window.location.href = '/reset-password.html';
         });
     </script>
 </body>

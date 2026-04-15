@@ -15,12 +15,12 @@
   <body style="background-color: #f6f6f6">
     <header>
       <nav
-        class="w-full text-white overflow-hidden"
-        style="background-color: #2a2a2a"
+        class="fixed inset-x-0 top-0 z-50 w-full text-white bg-slate-900/95 backdrop-blur-md shadow-lg"
+        style="background-color: rgba(42, 42, 42, 0.95);"
       >
         <div class="relative w-full">
           <div
-            class="mx-auto flex max-w-9xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8 text-white"
+            class="mx-auto flex max-w-9xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8 text-white"
           >
             <div class="inline-flex items-center space-x-2 text-white">
               <span>
@@ -41,16 +41,7 @@
                 </li>
                 <li>
                   <a
-                    href="#"
-                    class="text-sm font-semibold text-800 hover:text-gray-400"
-                  >
-                    <i class="fa-solid fa-circle-question"></i>
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
+                    href="study.html"
                     class="text-sm font-semibold text-800 hover:text-gray-400"
                   >
                     <i class="fa-solid fa-graduation-cap"></i>
@@ -59,24 +50,29 @@
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="dash.html"
                     class="text-sm font-semibold text-800 hover:text-gray-400"
                   >
                     <i class="fa-solid fa-book-bookmark"></i>
                     Dashboard
                   </a>
                 </li>
+                <li>
+                  <a
+                    href="about.html"
+                    class="text-sm font-semibold text-800 hover:text-gray-400"
+                  >
+                    <i class="fa-solid fa-circle-question"></i>
+                    About
+                  </a>
+                </li>
               </ul>
             </div>
             <div class="hidden lg:block">
-              <div class="isolate flex flex-col text-center -space-x-2">
-                <img
-                  class="relative z-0 inline-block h-8 w-8 rounded-full ring-2 ring-white"
-                  src="https://nextjs.org/_next/image?url=https%3A%2F%2Fwww.datocms-assets.com%2F35255%2F1665059775-delba.jpg&amp;w=640&amp;q=75"
-                  alt="Delba"
-                />
-                <span>Yash</span>
-              </div>
+              <a id="authUserLink" class="isolate flex flex-col text-center -space-x-2 text-white" href="/signup.html">
+                <i class="fa-solid fa-user"></i>
+                <span>Login</span>
+              </a>
             </div>
             <div class="lg:hidden">
               <svg
@@ -100,7 +96,7 @@
         </div>
       </nav>
     </header>
-
+    <div class="h-20"></div>
     <div class="section flex justify-between">
       <div class="left w-1/4 flex flex-col">
         <div

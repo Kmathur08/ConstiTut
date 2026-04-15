@@ -60,6 +60,8 @@ constiTUT-app/
 - `GET /api/content/:heading` - Get specific content by heading
 - `GET /api/quiz` - Get quiz questions
 - `GET /api/left` - Get sidebar navigation data
+- `GET /api/videos` - Get video metadata
+- `GET /api/videos/:title` - Get metadata for a specific video
 - `GET /videos/:title` - Serve video files
 
 ## Development
