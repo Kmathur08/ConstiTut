@@ -39,10 +39,12 @@
 //   ];
 
 const videoData = {
-  "Powers of the President": "/assets/videos/POP FINAL.mp4",
-  "Legislative Role of the President": "/assets/videos/legislative-role.mp4",
-  "Judicial and Emergency Powers": "/assets/videos/judicial-emergency.mp4"
+  "Powers of the President": "/videos/POP FINAL.mp4",
+  "Legislative Role of the President": "https://example.com/legislative-role.mp4",
+  "Judicial and Emergency Powers": "https://example.com/judicial-emergency.mp4"
 };
 
-module.exports = videoData;
+  
+  // Export video data
+  module.exports = videoData;
   

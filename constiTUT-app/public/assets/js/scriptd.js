@@ -1,7 +1,9 @@
-const quiz=document.getElementById('quiz-btn');
+const quiz = document.getElementById('quiz-btn');
+
+if (quiz) {
 quiz.addEventListener("click", ()=>{
   // Remove selected class from all interactive elements
-  document.querySelectorAll('#element, #quiz-btn, #crossword-btn, #quest-btn').forEach(element => {
+    document.querySelectorAll('.lesson-content, #video-heading, #quiz-btn, #crossword-btn, #quest-btn').forEach(element => {
     element.classList.remove("selected");
   });
   quiz.classList.add("selected");
@@ -170,6 +172,7 @@ function congrats() {
 }
 
 });
+}
 
 document.addEventListener('DOMContentLoaded', function() {
   const crosswordBtn = document.getElementById('crossword-btn');

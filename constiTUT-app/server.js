@@ -8,7 +8,8 @@ const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 const app = express();
 const PORT = process.env.PORT || 3000;
-const USERS_FILE = path.join(__dirname, 'users.json');
+const SOURCE_USERS_FILE = path.join(__dirname, 'users.json');
+const USERS_FILE = process.env.VERCEL ? path.join('/tmp', 'users.json') : SOURCE_USERS_FILE;
 const SESSION_SECRET = process.env.SESSION_SECRET || 'constitut-secret';
 const RESET_TOKEN_EXPIRY_MS = 1000 * 60 * 60; // 1 hour
 
@@ -39,13 +40,13 @@ app.use((req, res, next) => {
   }
 
   if (req.path.startsWith('/api/')) {
-    if (!req.session.user) {
+    if (!getAuthenticatedUsername(req)) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
     return next();
   }
 
-  if (!req.session.user) {
+  if (!getAuthenticatedUsername(req)) {
     return res.redirect('/signup.html');
   }
 
@@ -54,7 +55,110 @@ app.use((req, res, next) => {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+function asyncHandler(handler) {
+  return (req, res, next) => {
+    Promise.resolve(handler(req, res, next)).catch(next);
+  };
+}
+
+function parseCookies(cookieHeader) {
+  return (cookieHeader || '').split(';').reduce((cookies, item) => {
+    const separatorIndex = item.indexOf('=');
+    if (separatorIndex === -1) {
+      return cookies;
+    }
+
+    const key = item.slice(0, separatorIndex).trim();
+    const value = item.slice(separatorIndex + 1).trim();
+    if (key) {
+      cookies[key] = decodeURIComponent(value);
+    }
+    return cookies;
+  }, {});
+}
+
+function createAuthToken(username) {
+  const signature = crypto.createHmac('sha256', SESSION_SECRET).update(username).digest('hex');
+  return `${username}.${signature}`;
+}
+
+function verifyAuthToken(token) {
+  if (!token || !token.includes('.')) {
+    return null;
+  }
+
+  const lastDotIndex = token.lastIndexOf('.');
+  const username = token.slice(0, lastDotIndex);
+  const signature = token.slice(lastDotIndex + 1);
+  const expectedSignature = crypto.createHmac('sha256', SESSION_SECRET).update(username).digest('hex');
+
+  if (signature !== expectedSignature) {
+    return null;
+  }
+
+  return username;
+}
+
+function getAuthenticatedUsername(req) {
+  if (req.session && req.session.user && req.session.user.username) {
+    return req.session.user.username;
+  }
+
+  const cookies = parseCookies(req.headers.cookie);
+  return verifyAuthToken(cookies.authToken);
+}
+
+function setAuthCookie(res, username) {
+  const cookieParts = [
+    `authToken=${encodeURIComponent(createAuthToken(username))}`,
+    'Path=/',
+    'HttpOnly',
+    'SameSite=Lax',
+    'Max-Age=86400'
+  ];
+
+  if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
+    cookieParts.push('Secure');
+  }
+
+  res.setHeader('Set-Cookie', cookieParts.join('; '));
+}
+
+function clearAuthCookie(res) {
+  const cookieParts = [
+    'authToken=',
+    'Path=/',
+    'HttpOnly',
+    'SameSite=Lax',
+    'Max-Age=0'
+  ];
+
+  if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
+    cookieParts.push('Secure');
+  }
+
+  res.setHeader('Set-Cookie', cookieParts.join('; '));
+}
+
+async function ensureUsersFile() {
+  if (!process.env.VERCEL) {
+    return;
+  }
+
+  try {
+    await fs.access(USERS_FILE);
+  } catch {
+    try {
+      const data = await fs.readFile(SOURCE_USERS_FILE, 'utf8');
+      await fs.writeFile(USERS_FILE, data || '{}', 'utf8');
+    } catch {
+      await fs.writeFile(USERS_FILE, '{}', 'utf8');
+    }
+  }
+}
+
 async function loadUsers() {
+  await ensureUsersFile();
   try {
     const data = await fs.readFile(USERS_FILE, 'utf8');
     return data.trim() ? JSON.parse(data) : {};
@@ -67,6 +171,7 @@ async function loadUsers() {
 }
 
 async function saveUsers(users) {
+  await ensureUsersFile();
   await fs.writeFile(USERS_FILE, JSON.stringify(users, null, 2), 'utf8');
 }
 
@@ -152,7 +257,7 @@ function getYearHeatmap(year, loginHistory) {
 }
 
 // Authentication routes
-app.post('/api/auth/signup', async (req, res) => {
+app.post('/api/auth/signup', asyncHandler(async (req, res) => {
   const { name, username, email, password } = req.body;
 
   if (!name || !username || !email || !password) {
@@ -182,12 +287,18 @@ app.post('/api/auth/signup', async (req, res) => {
 
   await saveUsers(users);
   res.json({ message: 'Signup successful' });
-});
+}));
 
-app.post('/api/auth/login', async (req, res) => {
+app.post('/api/auth/login', asyncHandler(async (req, res) => {
   const { username, password } = req.body;
+  const identifier = String(username || '').trim();
+
+  if (!identifier || !password) {
+    return res.status(400).json({ error: 'Username/email and password are required' });
+  }
+
   const users = await loadUsers();
-  const user = users[username];
+  const user = users[identifier] || findUserByEmail(users, identifier);
 
   if (!user) {
     return res.status(400).json({ error: 'Invalid username or password' });
@@ -211,32 +322,55 @@ app.post('/api/auth/login', async (req, res) => {
     email: user.email
   };
 
+  setAuthCookie(res, user.username);
+
   res.json({ message: 'Login successful' });
-});
+}));
 
 app.post('/api/auth/logout', (req, res) => {
   req.session.destroy(err => {
     if (err) {
       return res.status(500).json({ error: 'Logout failed' });
     }
+    clearAuthCookie(res);
     res.json({ message: 'Logged out' });
   });
 });
 
-app.get('/api/auth/session', (req, res) => {
-  if (!req.session.user) {
+app.get('/api/auth/session', asyncHandler(async (req, res) => {
+  const username = getAuthenticatedUsername(req);
+  if (!username) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
-  res.json({ user: req.session.user });
-});
 
-app.get('/api/auth/profile', async (req, res) => {
-  if (!req.session.user) {
+  if (req.session && req.session.user && req.session.user.username === username) {
+    return res.json({ user: req.session.user });
+  }
+
+  const users = await loadUsers();
+  const user = users[username];
+  if (!user) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  res.json({
+    user: {
+      username: user.username,
+      name: user.name,
+      email: user.email
+    }
+  });
+}));
+
+app.get('/api/auth/profile', asyncHandler(async (req, res) => {
+  const username = getAuthenticatedUsername(req);
+
+  if (!username) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
   const users = await loadUsers();
-  const user = users[req.session.user.username];
+  const user = users[username];
   if (!user) {
     return res.status(404).json({ error: 'User not found' });
   }
@@ -258,9 +392,9 @@ app.get('/api/auth/profile', async (req, res) => {
     streak,
     totalLogins: loginHistory.length
   });
-});
+}));
 
-app.post('/api/auth/forgot-password', async (req, res) => {
+app.post('/api/auth/forgot-password', asyncHandler(async (req, res) => {
   const { email } = req.body;
 
   if (!email) {
@@ -283,9 +417,9 @@ app.post('/api/auth/forgot-password', async (req, res) => {
   await sendPasswordResetEmail(email, resetUrl);
 
   res.json({ message: 'Password reset link sent to your email' });
-});
+}));
 
-app.post('/api/auth/reset-password', async (req, res) => {
+app.post('/api/auth/reset-password', asyncHandler(async (req, res) => {
   const { token, newPassword } = req.body;
 
   if (!token || !newPassword) {
@@ -307,7 +441,7 @@ app.post('/api/auth/reset-password', async (req, res) => {
   await saveUsers(users);
 
   res.json({ message: 'Password reset successful' });
-});
+}));
 
 const constitutionContent = [
   {
@@ -315,7 +449,7 @@ const constitutionContent = [
     content: [
       {
         id: 1,
-        title: "Electoral College",
+    
         content: [
           "The President is elected by an Electoral College comprising:",
           "Elected members of both Houses of Parliament.",
@@ -538,8 +672,13 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`ConstiTUT server running on port ${PORT}`);
-  console.log(`Access the application at: http://localhost:${PORT}`);
-});
+// Start server (only for local development)
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`ConstiTUT server running on port ${PORT}`);
+    console.log(`Access the application at: http://localhost:${PORT}`);
+  });
+}
+
+// Export for Vercel
+module.exports = app;
